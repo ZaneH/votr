@@ -84,8 +84,8 @@ contract Votr {
             "You've already voted for this poll"
         );
 
-        candidates[_candidateId].votes += 1;
         votedForPoll[msg.sender][pollId] = true;
+        candidates[_candidateId].votes += 1;
 
         emit VoteCasted(pollId, _candidateId, msg.sender);
     }
