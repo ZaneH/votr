@@ -22,6 +22,21 @@ contract Votr {
 
     mapping(address => mapping(uint256 => bool)) public votedForPoll;
 
+    event PollAdded(uint256 pollId, string title);
+
+    event CandidateAdded(
+        uint256 candidateId,
+        string name,
+        address indexed person,
+        uint256 indexed pollId
+    );
+
+    event VoteCasted(
+        uint256 indexed pollId,
+        uint256 indexed candidateId,
+        address indexed voter
+    );
+
     modifier onlyOwner {
         require(msg.sender == owner, "Only the owner can call this function");
         _;
@@ -36,7 +51,10 @@ contract Votr {
     }
 
     function addPoll(string calldata _title) public onlyOwner {
-        polls.push(PollInfo({id: polls.length, title: _title}));
+        uint256 pollId = polls.length;
+        polls.push(PollInfo({id: pollId, title: _title}));
+
+        emit PollAdded(pollId, _title);
     }
 
     function addCandidate(
@@ -44,15 +62,18 @@ contract Votr {
         address _person,
         string calldata _name
     ) public onlyOwner {
+        uint256 candidateId = candidates.length;
         candidates.push(
             Candidate({
-                id: candidates.length,
+                id: candidateId,
                 name: _name,
                 person: _person,
                 votes: 0,
                 pollId: _pollId
             })
         );
+
+        emit CandidateAdded(candidateId, _name, _person, _pollId);
     }
 
     function castVote(uint256 _candidateId) public {
@@ -65,5 +86,7 @@ contract Votr {
 
         candidates[_candidateId].votes += 1;
         votedForPoll[msg.sender][pollId] = true;
+
+        emit VoteCasted(pollId, _candidateId, msg.sender);
     }
 }
