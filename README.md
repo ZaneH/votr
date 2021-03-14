@@ -16,3 +16,4 @@ My first smart contract using Hardhat + Chai + Waffle.
 - [ ] Utilize TypeScript (for tests)
 - [ ] Add React interface
 - [ ] Add events and write tests for them
+- [ ] Review Solidity attack vectors and make appropriate changes
