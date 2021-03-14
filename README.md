@@ -10,3 +10,4 @@ My first smart contract using Hardhat + Chai + Waffle.
 ## Todo
 - [ ] Utilize TypeScript (for tests)
 - [ ] Add React interface
+- [ ] Add events and write tests for them
