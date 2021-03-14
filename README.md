@@ -7,6 +7,11 @@ My first smart contract using Hardhat + Chai + Waffle.
 - [x] `addCandidate(uint256 pollId, address person, string name)`
 - [x] `castVote(uint256 candidateId)`
 
+## Events
+- [x] `PollAdded(...)`
+- [x] `CandidateAdded(...)`
+- [x] `VoteCasted(...)`
+
 ## Todo
 - [ ] Utilize TypeScript (for tests)
 - [ ] Add React interface
