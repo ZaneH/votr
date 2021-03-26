@@ -62,4 +62,10 @@ describe("Votr", () => {
 
     expect(votr.addPoll(POLL_NAME)).to.be.rejected;
   });
+
+  it ("should only allow the owner to transfer ownership", async () => {
+    await votr.transferOwnership("0x0000000000000000000000000000000000000000")
+
+    expect(votr.transferOwnership("0x0000000000000000000000000000000000000000")).to.be.rejected;
+  })
 });

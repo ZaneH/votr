@@ -4,6 +4,11 @@ pragma solidity ^0.7.4;
 contract Votr {
     address public owner;
 
+    struct PollInfo {
+        uint256 id;
+        string title;
+    }
+
     struct Candidate {
         uint256 id;
         string name;
@@ -12,15 +17,14 @@ contract Votr {
         uint256 pollId;
     }
 
-    struct PollInfo {
-        uint256 id;
-        string title;
-    }
-
     PollInfo[] public polls;
     Candidate[] public candidates;
 
     mapping(address => mapping(uint256 => bool)) public votedForPoll;
+
+    event TransferredOwnership(
+        address newOwner
+    );
 
     event PollAdded(uint256 pollId, string title);
 
@@ -48,6 +52,8 @@ contract Votr {
 
     function transferOwnership(address newOwner) public onlyOwner {
         owner = newOwner;
+
+        emit TransferredOwnership(newOwner);
     }
 
     function addPoll(string calldata _title) public onlyOwner {
