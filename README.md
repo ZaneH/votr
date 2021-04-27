@@ -8,6 +8,7 @@ My first smart contract using Hardhat + Chai + Waffle.
 - [x] `castVote(uint256 candidateId)`
 
 ## Events
+- [x] `TransferredOwnership(...)`
 - [x] `PollAdded(...)`
 - [x] `CandidateAdded(...)`
 - [x] `VoteCasted(...)`
@@ -16,4 +17,4 @@ My first smart contract using Hardhat + Chai + Waffle.
 - [ ] Utilize TypeScript (for tests)
 - [ ] Add React interface
 - [ ] Add events and write tests for them
-- [ ] Review Solidity attack vectors and make appropriate changes
+- [x] Review Solidity attack vectors and make appropriate changes
